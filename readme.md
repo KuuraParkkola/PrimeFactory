@@ -24,3 +24,16 @@ __usage__: python PrimeFactory.py [-h] [-o OUTPUT] [-d DB] number
 
   __-c__
   Ignore first primality test for guaranteed composite numbers. Increases performance significantly but runs indefinitely if number is a prime.
+
+## Examples
+python PrimeFactory.py 26541
+_Finds factors for the number 26541_
+
+python PrimeFactory.py -c 2654135
+_Finds factors, ignores some initial checks for faster performance_
+
+python PrimeFactory.py -o ./my_output.txt 265413
+_Finds factors, stores outputs to the file ./my\_output.txt instead of the default_
+
+python PrimeFactory.py -d ./my_db.json 26541
+_Finds factors, seeks existing results from a database file at ./my\_db.json_
