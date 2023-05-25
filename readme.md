@@ -1,6 +1,8 @@
 # PrimeFactory
 This project is my implementation of the task "primenumbers" in the job application process for VALA. This program seeks unique prime number factors of a given number leveraging Pollard's Rho factorization algorithm and Fermat's primality test.
 
+This program requires Python version 3.5 or later.
+
 ## Usage
 After cloning the repository, go to the directory containing the file `PrimeFactory.py`. The program is run on the commandline as follows:
 
@@ -37,3 +39,6 @@ _Finds factors, stores outputs to the file ./my\_output.txt instead of the defau
 
 python PrimeFactory.py -d ./my_db.json 26541
 _Finds factors, seeks existing results from a database file at ./my\_db.json_
+
+python PrimeFactory.py
+_Reminds about command line arguments, then prompts for a number and finds its factors
