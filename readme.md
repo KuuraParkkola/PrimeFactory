@@ -21,3 +21,6 @@ __usage__: python PrimeFactory.py [-h] [-o OUTPUT] [-d DB] number
 
   __-d DB, --db DB__
   Path to the results database
+
+  __-c__
+  Ignore first primality test for guaranteed composite numbers. Increases performance significantly but runs indefinitely if number is a prime.

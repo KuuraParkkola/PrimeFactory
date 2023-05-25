@@ -16,6 +16,8 @@ if __name__ == '__main__':
     parser.add_argument('number', default=None, type=int, help="The number to factorize")
     parser.add_argument('-o', '--output', type=Path, help="Output filename, defaults to 'output_[ISO datetime].txt'")
     parser.add_argument('-d', '--db', default='./database.json', type=Path, help="Path to the results database")
+    parser.add_argument('-c', action='store_true', help="Ignore first primality test for guaranteed composite numbers. Increases performance \
+                        significantly but runs indefinitely if number is a prime.", dest='isComposite')
 
     ##
     #   Define and validate program arguments
@@ -24,6 +26,7 @@ if __name__ == '__main__':
     number_str = None
     output_fl = None
     database_fl = None
+    is_composite = False
 
     try:
         args = parser.parse_args()
@@ -31,6 +34,7 @@ if __name__ == '__main__':
         output_fl = args.output
         database_fl = args.db
         number_str = str(number)
+        is_composite = args.isComposite
     except SystemExit as err:
         #   Program ended correctly, -h option was likely used
         if err.code == 0:
@@ -63,7 +67,7 @@ if __name__ == '__main__':
     else:
         # No existing results, run the algorithm and store the results in the database
         print(f"Seeking factors for number {number}")
-        result = factorize(number, on_match=lambda n: print(f"Prime factor found: {n}"))
+        result = factorize(number, is_composite, on_match=lambda n: print(f"Prime factor found: {n}"))
         print(f"All primes found in {result['runtime']:.2f} seconds")
         data[int(number)] = result
 
