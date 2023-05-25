@@ -29,6 +29,14 @@ def factorize(n: int, is_composite: bool = False, on_match: Callable[[int], None
         # Pick a number from the stack
         num = stack.pop()
 
+        # The Pollard Rho implementation seems to break on 4,
+        # this workaround temporarily fixes the problem
+        if num == 4:
+            if 2 not in factors and on_match is not None:
+                on_match(2)
+                factors.add(2)
+            continue
+
         # If the number is a prime, mark it as a prime factor
         if fermat_primality(num, 120):
             if num not in factors and on_match is not None:
